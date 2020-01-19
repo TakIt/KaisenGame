@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Atack</title>
+</head>
+<body>
+<form action="/Game" method="post">
+<p>攻撃しましょう！</p>
+<br><br>
+
+<p>縦</p>
+<input type="radio" name="width" value="0" checked="checked">y0
+<input type="radio" name="width" value="1">y1
+<input type="radio" name="width" value="2">y2
+<input type="radio" name="width" value="3">y3
+<input type="radio" name="width" value="4">y4
+<p>横</p>
+<input type="radio" name="length" value="0" checked="checked">x0
+<input type="radio" name="length" value="1">x1
+<input type="radio" name="length" value="2">x2
+<input type="radio" name="length" value="3">x3
+<input type="radio" name="length" value="4">x4
+<br><br>
+<button type="submit">決定</button>
+</form>
+
+<p>Player</p>
+<table border>
+    <thead>
+    <th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+    </thead>
+    <tr  th:each="pl:${player}">
+    </tr>
+    <script>
+        for(x=0;x<=4;x++){
+            document.write("<tr>");
+            for(y=0;y<=4;y++){
+                if(y===0){
+                    document.write("<td>",x,"</td>");
+                }
+                document.write("<td th:text=\"${pl["+x+"].getLabel()}\"></td>")
+            }
+            document.write("</tr>");
+        }
+    </script>
+</table>
+
+
+<p>Enemy</p>
+<table border>
+    <thead>
+    <th></th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th>
+    </thead>
+    <tr  th:each="cp:${cpu}">
+    </tr>
+    <script>
+    for(x=0;x<=4;x++){
+        document.write("<tr>");
+        for(y=0;y<=4;y++){
+            if(y===0){
+                document.write("<td>",x,"</td>");
+            }
+            document.write("<td th:text=\"${cp["+x+"].getLabel()}\"></td>")
+        }
+        document.write("</tr>");
+    }
+    </script>
+</table>
+
+
+</body>
+</html>
